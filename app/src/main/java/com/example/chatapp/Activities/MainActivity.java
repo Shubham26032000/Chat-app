@@ -1,4 +1,4 @@
-package com.example.chatapp;
+package com.example.chatapp.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.chatapp.Adapters.FragmentsAdapter;
+import com.example.chatapp.R;
 import com.example.chatapp.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -44,16 +44,16 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId())
         {
             case R.id.settings:
-                Intent intent2= new Intent(MainActivity.this,SettingsActivity.class);
+                Intent intent2= new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.logout:
                 auth.signOut();
-                Intent intent = new Intent(MainActivity.this,SignInActivity.class);
+                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
                 startActivity(intent);
                 break;
             case R.id.groupChat:
-                Intent intent1 = new Intent(MainActivity.this,GroupChatActivity.class);
+                Intent intent1 = new Intent(MainActivity.this, GroupChatActivity.class);
                 startActivity(intent1);
                 break;
         }

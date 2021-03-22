@@ -1,4 +1,4 @@
-package com.example.chatapp;
+package com.example.chatapp.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.example.chatapp.Adapters.ChatAdapter;
 import com.example.chatapp.Models.MessageModel;
+import com.example.chatapp.R;
 import com.example.chatapp.databinding.ActivityChatDetailsBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,7 +52,7 @@ public class ChatDetailsActivity extends AppCompatActivity {
         binding.backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ChatDetailsActivity.this,MainActivity.class);
+                Intent intent = new Intent(ChatDetailsActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
