@@ -1,14 +1,11 @@
 package com.example.chatapp.Activities;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.chatapp.Models.Users;
 import com.example.chatapp.R;
 import com.example.chatapp.databinding.ActivitySettingsBinding;
@@ -22,29 +19,21 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
 import java.util.HashMap;
-
 public class SettingsActivity extends AppCompatActivity {
-
     ActivitySettingsBinding binding;
     FirebaseAuth auth;
     FirebaseDatabase database;
     FirebaseStorage storage;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().hide();
-
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
-
-
         binding.backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,38 +50,26 @@ public class SettingsActivity extends AppCompatActivity {
                                 .load(users.getProfilepic())
                                 .placeholder(R.drawable.ic_user)
                                 .into(binding.profileImage);
-
                         binding.etStatus.setText(users.getStatus());
                         binding.etUserName.setText(users.getUserName());
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
-
         binding.saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String status = binding.etStatus.getText().toString();
                 String userName = binding.etUserName.getText().toString();
-
                 HashMap<String , Object> obj = new HashMap<>();
                 obj.put("userName",userName);
                 obj.put("status",status);
-
                 database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
                         .updateChildren(obj);
-
-
                 Toast.makeText(SettingsActivity.this, "Profile Updated!", Toast.LENGTH_SHORT).show();
-
-
             }
         });
-
-
         binding.plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,31 +79,24 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivityForResult(intent, 33);
             }
         });
-
-
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data.getData() != null) {
             Uri sFile = data.getData();
             binding.profileImage.setImageURI(sFile);
-
             final StorageReference reference = storage.getReference().child("profile_pictures")
                     .child(FirebaseAuth.getInstance().getUid());
-
             reference.putFile(sFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
                     reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
                             database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
                                     .child("profilepic").setValue(uri.toString());
                             Toast.makeText(SettingsActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
-
                         }
                     });
                 }

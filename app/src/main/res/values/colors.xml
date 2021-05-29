@@ -9,8 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="colorPrimary">#0b6156</color>
-    <color name="colorPrimaryDark">#095049</color>
+    <color name="colorPrimary">#299FA3</color>
+    <color name="colorPrimaryDark">#00BCD4</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="lightGrey" >#EDEDED</color>
     <color name="whatsAppColor">#0b6156</color>
