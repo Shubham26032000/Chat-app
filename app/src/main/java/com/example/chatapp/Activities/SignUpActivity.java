@@ -27,6 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
         {
             Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
             startActivity(intent);
+            finishAffinity();
         }
         getSupportActionBar().hide();
         auth = FirebaseAuth.getInstance();

@@ -41,6 +41,7 @@ public class SignInActivity extends AppCompatActivity {
         {
             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
             startActivity(intent);
+            finishAffinity();
         }
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Login");
@@ -98,6 +99,7 @@ public class SignInActivity extends AppCompatActivity {
             Toast.makeText(this, "User find!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
             startActivity(intent);
+            finishAffinity();
         }
     }
     int RC_SIGN_IN = 65;
